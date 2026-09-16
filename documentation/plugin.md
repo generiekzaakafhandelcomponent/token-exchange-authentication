@@ -47,7 +47,7 @@ dependencies {
     // Valtimo 13.x
     implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1")
     // Valtimo 12.x
-    implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1-V12")
+    implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.2-V12")
 }
 ```
 
@@ -57,7 +57,7 @@ dependencies {
 // Valtimo 13.x
 { "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.1" } }
 // Valtimo 12.x
-{ "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.1-V12" } }
+{ "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.2-V12" } }
 ```
 
 In your `app.module.ts`:

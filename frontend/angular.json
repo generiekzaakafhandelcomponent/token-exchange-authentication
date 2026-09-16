@@ -33,7 +33,7 @@
                             },
                             {
                                 "glob": "**/*",
-                                "input": "node_modules/@valtimo/shared/assets/core",
+                                "input": "node_modules/@valtimo/config/assets/core",
                                 "output": "./valtimo-translation/core/"
                             },
                             {

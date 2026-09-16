@@ -15,7 +15,7 @@
  */
 
 dockerCompose {
-    setProjectName("sample-plugin")
+    setProjectName("token-exchange-authentication")
     isRequiredBy(project.tasks.test)
 
     tasks.test {

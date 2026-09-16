@@ -1,10 +1,38 @@
 # Plugin Documentation
 
-<!-- Use this page to document your plugin. Below is a suggested structure. -->
-
 ## Overview
 
-This is a sample plugin demonstrating an API call action. It fetches data from a time API endpoint.
+Generic, standalone Keycloak/OAuth2 token-exchange authentication plugin.
+
+It performs a two-step exchange against a Keycloak (or other OIDC) token endpoint:
+
+1. `grant_type=client_credentials` to obtain a subject access token for the configured client.
+2. `grant_type=urn:ietf:params:oauth:grant-type:token-exchange` with that subject token to obtain
+   a JWT scoped to the configured `audience`.
+
+The resulting JWT is exposed via `getAccessToken()`. Tokens are cached in memory until shortly
+before they expire, to avoid exchanging a new token on every call.
+
+It implements its own minimal, HTTP-client-agnostic interface:
+
+```kotlin
+@PluginCategory("token-exchange-authentication")
+interface TokenExchangeAuthentication {
+    fun getAccessToken(): String
+    fun getSslContext(): SSLContext? = null
+}
+```
+
+This plugin has no dependency on any other plugin's authentication interface or category. Any
+plugin that needs Keycloak token-exchange authentication can take a `TokenExchangeAuthentication`
+typed `@PluginProperty` and call `getAccessToken()` to obtain the bearer token, applying it
+however its own HTTP client works (`RestClient`, `WebClient`, ...).
+
+Some gateways (e.g. the ZGW wsgateway) also require a client certificate (mTLS) on top of the
+JWT. Rather than depending on a separate SSL-context plugin, this plugin can build its own
+`SSLContext` directly from `keystorePath` + `keystoreSecret` (+ optional
+`truststorePath`/`truststoreSecret`), loading a JKS keystore file from disk. `getSslContext()`
+stays `null` when no keystore is configured, so plugins that don't need mTLS are unaffected.
 
 ## Dependencies
 
@@ -12,7 +40,7 @@ This is a sample plugin demonstrating an API call action. It fetches data from a
 
 ```kotlin
 dependencies {
-    implementation("com.ritense.valtimoplugins:sample-plugin:0.0.1")
+    implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1")
 }
 ```
 
@@ -21,7 +49,7 @@ dependencies {
 ```json
 {
   "dependencies": {
-    "@valtimo-plugins/sample-plugin": "0.0.1"
+    "@valtimo-plugins/token-exchange-authentication": "0.0.1"
   }
 }
 ```
@@ -30,18 +58,18 @@ In your `app.module.ts`:
 
 ```typescript
 import {
-    SamplePluginModule, samplePluginSpecification,
-} from '@valtimo-plugins/sample-plugin';
+    TokenExchangeAuthenticationPluginModule, tokenExchangeAuthenticationPluginSpecification,
+} from '@valtimo-plugins/token-exchange-authentication';
 
 @NgModule({
     imports: [
-        SamplePluginModule,
+        TokenExchangeAuthenticationPluginModule,
     ],
     providers: [
         {
-            provide: PLUGIN_TOKEN,
+            provide: PLUGINS_TOKEN,
             useValue: [
-                samplePluginSpecification,
+                tokenExchangeAuthenticationPluginSpecification,
             ]
         }
     ]
@@ -50,22 +78,26 @@ import {
 
 ## Configuration
 
-List the plugin configuration properties and how to set them.
-
-| Property | Type   | Required | Description                          |
-|----------|--------|----------|--------------------------------------|
-| apiUrl   | string | Yes      | The URL of the time API to call      |
+| Property         | Type   | Required | Secret | Description                                                             |
+|------------------|--------|----------|--------|-------------------------------------------------------------------------|
+| tokenEndpoint    | string | Yes      | No     | The Keycloak (or other OIDC) token endpoint URL                         |
+| clientId         | string | Yes      | No     | The client id used for both the client_credentials and exchange step    |
+| clientSecret     | string | Yes      | Yes    | The client secret                                                       |
+| audience         | string | Yes      | No     | The audience the exchanged JWT should be scoped to                      |
+| scope            | string | No       | No     | An optional OAuth2 scope to request                                     |
+| keystorePath     | string | No       | No     | Path to a JKS keystore file on disk, used to build an mTLS `SSLContext` |
+| keystoreSecret   | string | No       | Yes    | The keystore password                                                   |
+| truststorePath   | string | No       | No     | Path to a JKS truststore file on disk (optional)                        |
+| truststoreSecret | string | No       | Yes    | The truststore password                                                 |
 
 ## Actions
 
-### Time API test action
-
-Sends a GET request to the configured API URL and returns the timezone response.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-|           |      |          |             |
+This plugin does not expose any process actions. It is consumed by other plugins that take a
+`TokenExchangeAuthentication` typed `@PluginProperty` and call `getAccessToken()` (and optionally
+`getSslContext()`) to authenticate their own outgoing requests.
 
 ## Usage
 
-Explain how to use the plugin in a process, with examples if applicable.
+Configure an instance of the plugin with your Keycloak token endpoint, client credentials and
+target audience. Any other plugin that declares a `TokenExchangeAuthentication` typed
+`@PluginProperty` can then select this configuration to authenticate its requests.

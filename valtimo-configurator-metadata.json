@@ -1,17 +1,17 @@
 {
-    "name": "sample-plugin",
+    "name": "token-exchange-authentication",
     "version": 1,
     "backend": [
         {
-            "import": "com.ritense.valtimoplugins:sample-plugin"
+            "import": "com.ritense.valtimoplugins:token-exchange-authentication"
         }
     ],
     "frontend": {
-        "import": "@valtimo-plugins/sample-plugin",
+        "import": "@valtimo-plugins/token-exchange-authentication",
         "codeAdditions": [
             {
-                "spec": "samplePluginSpecification",
-                "module": "SamplePluginModule"
+                "spec": "tokenExchangeAuthenticationPluginSpecification",
+                "module": "TokenExchangeAuthenticationPluginModule"
             }
         ]
     }

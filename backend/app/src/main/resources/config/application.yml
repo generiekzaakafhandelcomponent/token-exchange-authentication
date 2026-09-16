@@ -125,7 +125,7 @@ audit:
   record:
     retention: 365 # days
 
-operaton:
+camunda:
   bpm:
     history-level: AUDIT
     history-level-default: AUDIT

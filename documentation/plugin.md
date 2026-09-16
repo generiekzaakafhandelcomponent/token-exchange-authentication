@@ -54,11 +54,10 @@ dependencies {
 ### Frontend
 
 ```json
-{
-  "dependencies": {
-    "@valtimo-plugins/token-exchange-authentication": "0.0.1"
-  }
-}
+// Valtimo 13.x
+{ "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.1" } }
+// Valtimo 12.x
+{ "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.1-V12" } }
 ```
 
 In your `app.module.ts`:

@@ -29,6 +29,13 @@ implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1")
 implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1-V12")
 ```
 
+```json
+// Valtimo 13.x
+{ "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.1" } }
+// Valtimo 12.x
+{ "dependencies": { "@valtimo-plugins/token-exchange-authentication": "0.0.1-V12" } }
+```
+
 ## Documentation
 
 - [Getting Started](documentation/getting-started.md) — setup and development instructions

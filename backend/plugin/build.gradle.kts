@@ -38,7 +38,6 @@ dependencies {
     // Testing
     testImplementation("com.ritense.valtimo:plugin-valtimo")
     testImplementation("com.ritense.valtimo:building-block")
-    testImplementation("com.ritense.valtimo:local-resource")
     testImplementation("com.ritense.valtimo:test-utils-common")
 
     testImplementation("org.springframework.boot:spring-boot-starter-web")

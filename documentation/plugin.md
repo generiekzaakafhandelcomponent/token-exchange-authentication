@@ -36,11 +36,18 @@ stays `null` when no keystore is configured, so plugins that don't need mTLS are
 
 ## Dependencies
 
+Published separately per supported Valtimo major version — see
+[Supported Valtimo versions](../README.md#supported-valtimo-versions) in the README for the full
+version matrix and branch mapping.
+
 ### Backend
 
 ```kotlin
 dependencies {
+    // Valtimo 13.x
     implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1")
+    // Valtimo 12.x
+    implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1-V12")
 }
 ```
 

@@ -1,14 +1,14 @@
 {
     "name": "@valtimo-plugins/token-exchange-authentication",
     "license": "EUPL-1.2",
-    "version": "0.0.1",
+    "version": "0.0.1-V12",
     "scripts": {
         "build": "ng build @valtimo-plugins/token-exchange-authentication",
         "watch": "ng build @valtimo-plugins/token-exchange-authentication --watch"
     },
     "peerDependencies": {
-        "@angular/common": "19.2.20",
-        "@angular/core": "19.2.20"
+        "@angular/common": ">=17.0.0 <20.0.0",
+        "@angular/core": ">=17.0.0 <20.0.0"
     },
     "dependencies": {
         "@angular/forms": "19.2.20",

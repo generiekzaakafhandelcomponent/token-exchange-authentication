@@ -15,11 +15,10 @@
  */
 
 /*
- * Public API Surface of sample-plugin
+ * Public API Surface of token-exchange-authentication
  */
 
-export * from "./lib/plugins/sample-plugin/models";
-export * from "./lib/plugins/sample-plugin/sample-plugin-module";
-export * from "./lib/plugins/sample-plugin/sample-plugin.specification";
-export * from "./lib/plugins/sample-plugin/components/sample-plugin-configuration/sample-plugin-configuration.component";
-export * from "./lib/plugins/sample-plugin/components/sample-action-configuration/sample-action-configuration.component";
+export * from "./lib/plugins/token-exchange-authentication/models/token-exchange-authentication-plugin-config";
+export * from "./lib/plugins/token-exchange-authentication/token-exchange-authentication.plugin.module";
+export * from "./lib/plugins/token-exchange-authentication/token-exchange-authentication.plugin.specification";
+export * from "./lib/plugins/token-exchange-authentication/components/token-exchange-authentication-plugin-configuration.component";

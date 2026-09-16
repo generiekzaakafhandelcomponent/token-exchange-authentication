@@ -1,1 +1,1 @@
-This is the sample plugin.
+This is the token exchange authentication plugin.

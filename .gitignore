@@ -124,6 +124,7 @@ Desktop.ini
 .merge_file*
 /classes
 .angular
+.nx
 
 ######################
 # Gradle Wrapper

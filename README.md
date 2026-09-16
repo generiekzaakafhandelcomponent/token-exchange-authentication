@@ -12,7 +12,7 @@ branch per version:
 | Branch  | Valtimo version | Process engine | Java version | Angular version | Backend artifact version | Frontend package version |
 |---------|------------------|-----------------|--------------|------------------|---------------------------|---------------------------|
 | `main`  | 13.x (Operaton)  | Operaton        | 21           | 19               | `0.0.1`                   | `0.0.1`                   |
-| `v12`   | 12.x (Camunda 7) | Camunda 7       | 17           | 17               | `0.0.2-V12`                | `0.0.2-V12`               |
+| `v12`   | 12.x (Camunda 7) | Camunda 7       | 17           | 17               | `0.0.3-V12`                | `0.0.2-V12`               |
 
 Both branches build the exact same plugin sources — the plugin has no direct dependency on the
 process engine (it has no `@PluginAction`), so only the Valtimo/Spring Boot version pins and a
@@ -33,7 +33,7 @@ Depend on whichever matches your Valtimo version, e.g.:
 // Valtimo 13.x
 implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.1")
 // Valtimo 12.x
-implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.2-V12")
+implementation("com.ritense.valtimoplugins:token-exchange-authentication:0.0.3-V12")
 ```
 
 ```json

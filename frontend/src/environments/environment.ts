@@ -105,7 +105,6 @@ export const environment: ValtimoConfig = {
         sequence: 6,
         children: [
           {title: "Configuration", textClass: "text-dark font-weight-bold c-default", sequence: 1},
-          {link: ["/building-block-management"], title: "buildingBlockManagement.title", sequence: 2},
           {link: ["/case-management"], title: "Cases", sequence: 3},
           {link: ["/plugins"], title: "Plugins", sequence: 4},
           {link: ["/dashboard-management"], title: "Dashboard", sequence: 5},

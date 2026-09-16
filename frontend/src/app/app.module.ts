@@ -54,7 +54,6 @@ import {
   WidgetModule,
 } from "@valtimo/components";
 import {BrowserModule} from "@angular/platform-browser";
-import {BuildingBlockManagementModule} from "@valtimo/building-block-management";
 import {CaseManagementModule} from "@valtimo/case-management";
 import {CaseMigrationModule} from "@valtimo/case-migration";
 import {ChoiceFieldModule} from "@valtimo/choice-field";
@@ -123,7 +122,6 @@ export function tabsFactory() {
     BootstrapModule,
     BpmnJsDiagramModule,
     BrowserModule,
-    BuildingBlockManagementModule,
     CaseManagementModule,
     CaseMigrationModule,
     CaseModule.forRoot(tabsFactory),

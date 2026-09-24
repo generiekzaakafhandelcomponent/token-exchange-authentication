@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gzac-plugin-template
+    name: token-exchange-authentication
   profiles:
     active: dev
   jackson:

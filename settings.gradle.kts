@@ -1,4 +1,4 @@
-rootProject.name = "gzac-plugin-template"
+rootProject.name = "token-exchange-authentication"
 include(
     "backend",
     "backend:app",
